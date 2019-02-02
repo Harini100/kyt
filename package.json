@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "post.js",
+  "scripts": {
+    "start": "node post.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mime": "^2.3.1",
+    "multer": "^1.3.1",
+    "mysql": "^2.16.0",
+    "request": "^2.87.0"
+  }
+}

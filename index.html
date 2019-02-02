@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en">
+
+
+
+<head>
+
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700" rel="stylesheet">
+
+   	<link href="https://fonts.googleapis.com/css?family=Teko:400,700" rel="stylesheet">
+
+   	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+   	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <style media="screen" type="text/css">
+
+
+
+        ul li {
+
+
+
+            display: inline;
+
+
+
+        }
+
+		
+
+		.content-header{
+
+  font-family: 'Oleo Script', cursive;
+
+  color:#fcc500;
+
+  font-size: 45px;
+
+}
+
+
+
+.section-content{
+
+  text-align: center; 
+
+
+
+}
+
+
+
+.contact-section{
+
+  padding-top: 40px;
+
+}
+
+.contact-section .col-md-6{
+
+  width: 50%;
+
+}
+
+
+
+
+
+    </style>
+
+
+
+    <title>Tender Details</title>
+
+
+
+
+
+
+
+    <meta charset="utf-8">
+
+
+
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+
+
+
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+
+
+<body >
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+
+
+    <div class="container" ng-app="app" ng-controller="myCtrl">
+
+
+
+        <!-- <select ng-model="selectedName" ng-options="x for x in names"></select> -->
+
+
+
+        <!--<h2>Tender Details</h2>-->
+
+		
+
+		<section id="contact">
+
+			<div class="section-content">
+
+				<h1 class="section-header"> <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">Know Your Tender</span></h1>
+
+				<h3 style="font-family: 'Teko', sans-serif">Please specify period of time for which you want to get the notifications </h3><br>
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <form name="form1" class="form-inline" role="form">
+
+			
+
+			<div class="col-md-6" style="text-align: center">
+
+            <label>
+
+				FROM:&nbsp <input type="date" name="fromdate" id="fromdate" class="form-control mb-2 mr-sm-2" ng-model="fromdate" />
+
+            </label>
+
+			
+
+			</div>
+
+			
+
+			<div class="col-md-6" style="text-align: center">
+
+            <label>
+
+				TO:&nbsp <input type="date" name="todate" id="todate" class="form-control mb-2 mr-sm-2" ng-model="todate" />
+
+            </label>
+
+			
+
+			</div>
+
+
+
+            
+
+            
+
+            <br>
+
+            <div class="col-md-12" style="text-align: center">
+
+            <button type="button" class="btn btn-primary mb-2" ng-click="SendData()">Submit</button>
+
+			</div>
+
+
+
+
+
+        </form>
+
+		
+
+		<br>
+
+		
+
+		
+
+		<section id="contact">
+
+			<div class="section-content">
+
+				<h3 style="font-family: 'Teko', sans-serif">Specify the tag that you want to search for.</h3><br>
+
+			</div>
+
+		<form name="form2" class="form-inline" role="form">
+
+
+
+                <div class="col-md-12" style="text-align: center">
+
+
+
+                ENTER KEYWORD:&nbsp   <input type="text" ng-model="searchquery"> &nbsp
+
+            
+
+            <button type="button" class="btn btn-primary mb-2" ng-click="SearchData()">SEARCH</button>
+
+			   </div>
+
+
+
+
+
+        </form>
+
+
+
+        <!--<hr/> {{PostDataResponse.dataArray}}-->
+
+        <!--  <p>CITY: <input type="text" ng-model="cityname" required /></p>
+
+
+
+          <p>AREA: <input type="text" ng-model="areaname" required /></p>
+
+
+
+          <p>TENDER TYPE: <input type="text"  ng-model="tendertype" required /></p>
+
+
+
+          <button ng-click="SendData()">Submit</button> -->
+
+		  
+
+		  
+
+		    <div id="notid">
+
+             <h3 id="noti"><b id="noti"></b></h3>				  
+
+				  <h4 ng-repeat="tender in PostDataResponse.notifications">
+
+				  
+
+            <div class="card">
+
+
+
+
+
+                <div class="card-body">
+
+				
+
+				    <h4 class="card-title">{{tender.linkText}}</h4>
+					
+					<h6 class="card-text">Last Updated on {{tender.luDate}} at {{tender.luTime}}</h5>
+
+
+                    <h6 class="card-text"><a href={{tender.pageUrl}} target="_blank">GO TO THE PAGE</a></h5>
+
+					
+
+					<h6 class="card-text"><a href={{tender.linkUrl}} target="_blank">GO TO THE LINK</a></h5>
+
+					<h6 class="card-text">TAGS:&nbsp {{tender.combinedtags}}</h5>
+					
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+			</div>
+
+			
+			
+			<div id="searchid">
+
+			<h3 id="search"><b id="search"></b></h3>
+
+			<h4 ng-repeat="tender in PostData.notifications">
+
+
+
+            <div class="card">
+
+
+
+
+
+
+
+               <div class="card-body">
+
+				
+
+				    <h4 class="card-title">{{tender.linkText}}</h4>
+					
+					
+					<h6 class="card-text">Last Updated on {{tender.luDate}} at {{tender.luTime}}</h5>
+
+
+                    <h6 class="card-text"><a href={{tender.pageUrl}} target="_blank">GO TO THE PAGE</a></h5>
+
+					
+
+					<h6 class="card-text"><a href={{tender.linkUrl}} target="_blank">GO TO THE LINK</a></h5>
+					
+					<h6 class="card-text">TAGS:&nbsp {{tender.combinedtags}}</h5>
+
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+
+			</div>
+
+    </div>
+
+
+
+
+
+
+
+    <script>
+
+
+
+        function loadCities() {            
+
+
+
+            var url = "cities.json";
+
+
+
+            var y = document.getElementById("city");
+
+
+
+            $.getJSON(url, function (json) {
+
+
+
+                for (var i = 0; i < json.length; i++) {
+
+
+
+                    var option = document.createElement("option");
+
+
+
+                    option.text = json[i].city;
+
+
+
+                    y.add(option);
+
+
+
+                }
+
+
+
+            });
+
+
+
+        }
+
+
+
+
+
+
+
+        function loadAreas() {
+
+
+
+            var x = document.getElementById("area");
+
+
+
+            var y = document.getElementById("city");
+
+
+
+            while (x.length > 1) {
+
+
+
+                x.remove(1);
+
+
+
+            }
+
+
+
+            var url = "areas.json";
+
+
+
+            $.getJSON(url, function (json) {
+
+
+
+                for (var i = 0; i < json.length; i++) {
+
+
+
+                    if (json[i].city == y.value) {
+
+
+
+                        var option = document.createElement("option");
+
+
+
+                        option.text = json[i].area;
+
+
+
+                        x.add(option);
+
+
+
+                    }
+
+
+
+                }
+
+
+
+            });
+
+
+
+        }
+
+
+
+
+
+
+
+        var app = angular.module("app",[]);
+
+
+
+        app.controller("myCtrl", function($scope,$http){
+
+
+
+		
+
+
+
+        $scope.SendData = function() {
+
+
+
+
+
+
+
+            var data = {
+
+
+
+				  fdate : $scope.fromdate,
+
+				  
+
+				  tdate : $scope.todate
+
+
+
+                }
+
+
+
+            $http.post('/post', data)
+
+
+
+                .success(function (data, status, headers, config) {
+
+
+
+                    $scope.PostDataResponse = data;
+					
+
+					document.getElementById("noti").innerHTML ="NOTIFICATIONS :"
+
+
+
+
+                })
+
+
+
+                .error(function(data, status, header, config){
+
+
+
+                    $scope.PostDataResponse = "Data: " + status;
+
+     
+
+
+
+                });
+
+
+
+        };
+
+		
+
+		
+
+		$scope.SearchData = function() {
+
+
+
+
+
+
+
+            var data = {
+
+
+
+				   sName :$scope.searchquery
+
+
+
+                }
+
+
+
+            $http.post('/post1', data)
+
+
+
+                .success(function (data, status, headers, config) {
+
+
+
+                    $scope.PostData = data;
+
+					
+					document.getElementById("search").innerHTML ="SEARCH RESULTS: ";
+
+					var m=data.map(JSON.stringify);
+
+
+                })
+
+
+
+                .error(function(data, status, header, config){
+
+
+
+                    $scope.PostData = "Data: " + status;
+
+
+
+
+
+
+
+                });
+
+
+
+        };
+
+
+
+        });
+
+
+
+    </script>
+
+
+
+</body>
